@@ -216,6 +216,10 @@ public final class URL implements java.io.Serializable {
         int startIPv6Addr = spec.indexOf('[');
         if (index >= 0) {
             if ((startIPv6Addr == -1) || (index < startIPv6Addr)) {
+                if(0 == index) {
+                    throw new MalformedURLException("Protocol missing from " + spec); // mP Added to match JRE behaviour
+                }
+
                 protocol = spec.substring(0, index);
                 // According to RFC 2396 scheme part should match
                 // the following expression:
@@ -386,6 +390,11 @@ public final class URL implements java.io.Serializable {
             throw new MalformedURLException("Port out of range: "+ port); //$NON-NLS-1$
         }
 
+        // mP copy behaviour of JRE
+        if(null == host) {
+            port = -1;
+        }
+
         if (host != null && host.indexOf(":") != -1 && host.charAt(0) != '[') { //$NON-NLS-1$
             host = "[" + host + "]"; //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -396,7 +405,11 @@ public final class URL implements java.io.Serializable {
             throw new NullPointerException("Unknown protocol: null"); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
-        this.protocol = protocol;
+        if(protocol.isEmpty()) {
+            throw new MalformedURLException("Protocol missing"); // mP Added to match JRE behaviour
+        }
+
+        this.protocol = protocol.toLowerCase(); // mP added toLowerCase() to match JRE behaviour
         this.host = host;
         this.port = port;
 
@@ -432,7 +445,8 @@ public final class URL implements java.io.Serializable {
 
     void fixURL(boolean fixHost) {
         int index;
-        if (host != null && host.length() > 0) {
+        //if (host != null && host.length() > 0) { removed host.length test to match JRE behaviour
+        if (host != null /*&& host.length() > 0*/) {
             authority = host;
             if (port != -1) {
                 authority = authority + ":" + port; //$NON-NLS-1$
@@ -907,7 +921,8 @@ public final class URL implements java.io.Serializable {
             String authority, String userInfo, String path, String query,
             String ref) {
         String filePart = path;
-        if (query != null && !query.equals("")) { //$NON-NLS-1$
+        //if (query != null && !query.equals("")) { //$NON-NLS-1$ removed NOT empty test to match JDK behaviour
+        if (query != null /*&& !query.equals("")*/) { //$NON-NLS-1$
             if (filePart != null) {
                 filePart = filePart + "?" + query; //$NON-NLS-1$
             } else {
