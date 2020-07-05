@@ -17,7 +17,25 @@ A partial emulation of some of the classes in the java.net package.
 - URLDecoder
 - URLEncoder
 
-TODO Write up missing methods/features.
+## walkingkooka.j2cl.java.net
+
+- The package `walkingkooka.j2cl.java.net` is shaded to `java.net`.
+
+
+
+### URL
+
+URL should only be used to parse String urls. All network methods have been removed.
+
+
+
+#### Methods
+
+- URLStreamHandler ctor methods are absent
+- `getContent` absent.
+- `openConnection` absent.
+- `openStream` absent.
+- `setURLStreamHandlerFactory` absent.
 
 
 
