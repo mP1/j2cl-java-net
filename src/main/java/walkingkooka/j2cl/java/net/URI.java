@@ -213,7 +213,33 @@ public final class URI implements Comparable<URI>, Serializable {
             uri.append(quoteComponent(fragment, allLegal));
         }
 
-        new Helper().parseURI(uri.toString(), true);
+        //new Helper().parseURI(uri.toString(), true);
+        final boolean hostNull = null == host;
+        new Helper().parseURI(uri.toString(), ! hostNull);
+
+        // mP1 entire if block attempts to simulate behaviour of JRE
+        if(hostNull) {
+            this.authority = null;
+
+            final StringBuilder ssp = new StringBuilder();
+            if(null != path) {
+                ssp.append(path);
+            }
+            if(null != query) {
+                ssp.append('?');
+                ssp.append(query);
+            }
+            // JRE ignores fragment.
+
+            this.schemespecificpart = ssp.toString();
+
+            if(null != fragment) {
+                ssp.append('#');
+                ssp.append(fragment);
+            }
+
+            this.string = scheme + ':' + ssp;
+        }
     }
 
     /**
