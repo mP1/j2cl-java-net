@@ -159,47 +159,47 @@ public final class URITest implements ClassTesting<URI> {
 
     @Test
     public void testSchemeSspHost() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host2", "");
+        this.newSchemeSspFragmentAndCheck("http", "host2", "");
     }
 
     @Test
     public void testSchemeSspHostPort() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host3:80", "");
+        this.newSchemeSspFragmentAndCheck("http", "host3:80", "");
     }
 
     @Test
     public void testSchemeSspHostNonStandardPort() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host3:789", "");
+        this.newSchemeSspFragmentAndCheck("http", "host3:789", "");
     }
 
     @Test
     public void testSchemeSspHostNullFragment() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host4", null);
+        this.newSchemeSspFragmentAndCheck("http", "host4", null);
     }
 
     @Test
     public void testSchemeSspHostFragment() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host5", "a");
+        this.newSchemeSspFragmentAndCheck("http", "host5", "a");
     }
 
     @Test
     public void testSchemeSspHostFragment2() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host5", "xyz");
+        this.newSchemeSspFragmentAndCheck("http", "host5", "xyz");
     }
 
     @Test
     public void testSchemeSspHostPath() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host6/path7", "");
+        this.newSchemeSspFragmentAndCheck("http", "host6/path7", "");
     }
 
     @Test
     public void testSchemeSspHostPathEmptyQuery() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host8/path9?", "");
+        this.newSchemeSspFragmentAndCheck("http", "host8/path9?", "");
     }
 
     @Test
     public void testSchemeSspHostPathQuery() throws Exception {
-        this.newSchemeSspFragmentAndCheck("http://", "host1/path2?q=rst", "");
+        this.newSchemeSspFragmentAndCheck("http", "host1/path2?q=rst", "");
     }
 
     private void newSchemeSspFragmentAndCheck(final String scheme,
@@ -240,57 +240,57 @@ public final class URITest implements ClassTesting<URI> {
 
     @Test
     public void testSchemeHostPathFragmentSchemeHost() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host2", "/path", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host2", "/path", "fragment");
     }
 
     @Test
     public void testSchemeHostPathFragmentSchemeHostPort() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host3:80", "/path", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host3:80", "/path", "fragment");
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostNonStandardPort() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host3:789", "/path", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host3:789", "/path", "fragment");
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostNullFragment() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host4", "/path", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host4", "/path", null);
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostFragment() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host5", "/path", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host5", "/path", "fragment");
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostFragment2() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host5", "/path", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host5", "/path", "fragment");
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostPath() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host6", "/path7", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host6", "/path7", "fragment");
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostPathEmptyQueryFragment() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host8", "/path9?", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host8", "/path9?", "fragment");
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostPathQueryEmptyFragment() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host8", "/path9?q", "");
+        this.newSchemeHostPathFragmentAndCheck("http", "host8", "/path9?q", "");
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostPathQueryFragment() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host1", "/path2", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host1", "/path2", "fragment");
     }
 
     @Test
     public void testSchemeHostPathFragmentSspHostPathFragment() throws Exception {
-        this.newSchemeHostPathFragmentAndCheck("http://", "host1", "/path2", "fragment");
+        this.newSchemeHostPathFragmentAndCheck("http", "host1", "/path2", "fragment");
     }
 
     private void newSchemeHostPathFragmentAndCheck(final String scheme,
@@ -332,97 +332,102 @@ public final class URITest implements ClassTesting<URI> {
 
     @Test
     public void testSchemeAuthorityPathQueryFragment() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host2", "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host2", "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentNullAuthority() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", null, "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", null, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentEmptyAuthority() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "", "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "", "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentAuthority() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host2", "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host2", "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentPort() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host3:80", "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host3:80", "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentNonStandardPort() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host3:789", "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host3:789", "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentNullPath() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host4", null, "", "");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host4", null, "", "");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentEmptyPath() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "", "", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "", "", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentSlashPath() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/", "", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/", "", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentPath() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/path6", "", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path6", "", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentPath2() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/path6/path7", "", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path6/path7", "", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentNullQuery() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host4", "/path", null, "");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host4", "/path", null, "");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentEmptyQuery() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/path", "", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path", "", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentQuery() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentQuery2() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/path", "Q=Z", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path", "Q=Z", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentQuery3() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/path", "Q=Z&R=S", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path", "Q=Z&R=S", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentNullFragment() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host4", "/path", "Q", null);
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host4", "/path", "Q", null);
+    }
+
+    @Test
+    public void testSchemeAuthorityPathQueryFragmentEmptyFragment() throws Exception {
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path", "Q", "");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentFragment() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeAuthorityPathQueryFragmentFragment2() throws Exception {
-        this.newSchemeAuthorityPathQueryFragmentAndCheck("http:", "host5", "/path", "Q", "fragment");
+        this.newSchemeAuthorityPathQueryFragmentAndCheck("http", "host5", "/path", "Q", "fragment");
     }
 
     private void newSchemeAuthorityPathQueryFragmentAndCheck(final String scheme,
@@ -465,112 +470,122 @@ public final class URITest implements ClassTesting<URI> {
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragment() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host2", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host2", 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentNullUserInfo() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", null, "host1", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", null, "host1", 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentEmptyUserInfo() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "", "host1", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "", "host1", 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentUserInfo() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host1", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host1", 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentNullHost() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", null, 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", null, 123, "/path", "Q", "fragment");
+    }
+
+    @Test
+    public void testSchemeUserInfoHostPortPathQueryFragmentNoCredentialsNullHost() throws Exception {
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "", null, 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentEmptyHost() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "", 123, "/path", "Q", "fragment");
+    }
+
+    @Test
+    public void testSchemeUserInfoHostPortPathQueryFragmentEmptyHostNoCredentials() throws Exception {
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "", "", 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentInvalidPort() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host3:80", -1, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host3:80", -1, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentInvalidPort2() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host3:80", 65536, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host3:80", 65536, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentNonStandardPort() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host3:789", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host3:789", 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentNullPath() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host4", 123, null, "", "");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host4", 123, null, "", "");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentEmptyPath() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "", "", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "", "", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentSlashPath() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/", "", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/", "", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentPath() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/path6", "", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/path6", "", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentPath2() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/path6/path7", "", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/path6/path7", "", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentNullQuery() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host4", 123, "/path", null, "");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host4", 123, "/path", null, "");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentEmptyQuery() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/path", "", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/path", "", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentQuery() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentQuery2() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/path", "Q=Z", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/path", "Q=Z", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentQuery3() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/path", "Q=Z&R=S", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/path", "Q=Z&R=S", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentNullFragment() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host4", 123, "/path", "Q", null);
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host4", 123, "/path", "Q", null);
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentFragment() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/path", "Q", "fragment");
     }
 
     @Test
     public void testSchemeUserInfoHostPortPathQueryFragmentFragment2() throws Exception {
-        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http://", "user1:password2", "host5", 123, "/path", "Q", "fragment");
+        this.newSchemeUserInfoHostPortPathQueryFragmentAndCheck("http", "user1:password2", "host5", 123, "/path", "Q", "fragment");
     }
 
     private void newSchemeUserInfoHostPortPathQueryFragmentAndCheck(final String scheme,
@@ -732,8 +747,8 @@ public final class URITest implements ClassTesting<URI> {
         assertEquals(jre.isAbsolute(), emul.isAbsolute(), () -> "isAbsolute " + jre);
         assertEquals(jre.isOpaque(), emul.isOpaque(), () -> "isOpaque " + jre);
 
-        assertEquals(jre.toASCIIString(), emul.toASCIIString(), () -> "toASCIIString " + jre);
         assertEquals(jre.toString(), emul.toString(), () -> "toString " + jre);
+        assertEquals(jre.toASCIIString(), emul.toASCIIString(), () -> "toASCIIString " + jre);
 
         java.net.URL jreUrl;
         try {
