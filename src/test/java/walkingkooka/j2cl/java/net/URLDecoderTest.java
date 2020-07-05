@@ -41,6 +41,11 @@ public final class URLDecoderTest implements ClassTesting<URLDecoder> {
     }
 
     @Test
+    public void testDecodeSpace() {
+        this.decodeAndCheck(" ");
+    }
+
+    @Test
     public void testDecodeMixedAscii() {
         this.decodeAndCheck("ABC123");
     }

@@ -160,9 +160,15 @@ public class URLDecoder {
                     i += 3;
                 } while (i < s.length() && s.charAt(i) == '%');
 
-                CharBuffer cb = charset.decode(ByteBuffer.wrap(buf, 0, len));
-                len = cb.length();
-                System.arraycopy(cb.array(), 0, str_buf, buf_len, len);
+// mP replace CharBuffer & ByteArray with String ctor equiv
+//                CharBuffer cb = charset.decode(ByteBuffer.wrap(buf, 0, len));
+//                len = cb.length();
+//                System.arraycopy(cb.array(), 0, str_buf, buf_len, len);
+
+                final char[] decoded = new String(buf, 0, len, charset)
+                        .toCharArray();
+                len = decoded.length;
+                System.arraycopy(decoded, 0, str_buf, buf_len, len);
                 buf_len += len;
                 continue;
             } else {
