@@ -74,8 +74,8 @@ class URIEncoderDecoder {
             }
             if (!((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')
                     || (ch >= '0' && ch <= '9') || legal.indexOf(ch) > -1 || (ch > 127
-                    && !Character.isSpaceChar(ch) && !Character
-                    .isISOControl(ch)))) {
+                    && !/*Character.*/isSpaceChar(ch) && !/*Character
+                    .*/isISOControl(ch)))) {
 //                luni.7F=Illegal character
 //                throw new URISyntaxException(s, Messages.getString("luni.7F"), i); //$NON-NLS-1$
                 throw new URISyntaxException(s, "Illegal character", i);
@@ -126,8 +126,8 @@ class URIEncoderDecoder {
                     || (ch >= 'A' && ch <= 'Z')
                     || (ch >= '0' && ch <= '9')
                     || legal.indexOf(ch) > -1
-                    || (ch > 127 && !Character.isSpaceChar(ch) && !Character
-                            .isISOControl(ch))) {
+                    || (ch > 127 && !/*Character.*/isSpaceChar(ch) && !/*Character
+                            .*/isISOControl(ch))) {
                 buf.append(ch);
             } else {
                 byte[] bytes = new String(new char[] { ch }).getBytes(encoding);
@@ -224,4 +224,13 @@ class URIEncoderDecoder {
         return result.toString();
     }
 
+    // introduce equivalents/inlined for unsupported J2CL Character methods.
+
+    private static boolean isSpaceChar(final char c) {
+        return Character.isWhitespace(c);
+    }
+
+    private static boolean isISOControl(final char c) {
+        return c >= 0 && c <= 0x001f || c >= 0x007f && c <= 0x009f;
+    }
 }
