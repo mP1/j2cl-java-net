@@ -17,7 +17,7 @@
 
 package walkingkooka.j2cl.java.net;
 
-public final class URLUtil {
+/*public*/ final class URLUtil {
 
     /**
      * Canonicalize the path, i.e. remove ".." and "." occurences.
@@ -25,7 +25,7 @@ public final class URLUtil {
      * @param path the path to be canonicalized
      * @return the canonicalized path
      */
-    public static String canonicalizePath(String path) {
+    /*public*/ static String canonicalizePath(String path) {
         int dirIndex;
 
         while ((dirIndex = path.indexOf("/./")) >= 0) { //$NON-NLS-1$
