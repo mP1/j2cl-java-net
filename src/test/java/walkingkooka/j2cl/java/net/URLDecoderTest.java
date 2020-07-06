@@ -25,10 +25,37 @@ import walkingkooka.text.CharSequences;
 import java.io.UnsupportedEncodingException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class URLDecoderTest implements ClassTesting<URLDecoder> {
 
-    // encode...........................................................................................................
+    // decode...........................................................................................................
+
+    @Test
+    public void testDecodeNullFails() {
+        this.decodeFails(null, NullPointerException.class);
+    }
+
+    @Test
+    public void testDecodeEmpty() {
+        this.decodeAndCheck("");
+    }
+
+    @Test
+    public void testDecodeInvalidFails() {
+        this.decodeFails("%", IllegalArgumentException.class);
+    }
+
+    @Test
+    public void testDecodeInvalidFails2() {
+        this.decodeFails("%2", IllegalArgumentException.class);
+    }
+
+    private void decodeFails(final String s,
+                             final Class<? extends Throwable> thrown) {
+        assertThrows(thrown, () -> java.net.URLDecoder.decode(s));
+        assertThrows(thrown, () -> URLDecoder.decode(s));
+    }
 
     @Test
     public void testDecodeA() {
@@ -68,21 +95,65 @@ public final class URLDecoderTest implements ClassTesting<URLDecoder> {
                 () ->  "decode " + CharSequences.quoteAndEscape(encoded) + " originally " + CharSequences.quoteAndEscape(s));
     }
 
-    // encode...........................................................................................................
+    // encoding...........................................................................................................
+
+    private final static String UTF8 = "UTF-8";
+
+    @Test
+    public void testDecodeEncodingNullStringFails() {
+        this.decodeEncodingFails(null, UTF8, NullPointerException.class);
+    }
+
+    @Test
+    public void testDecodeEncodingEmptyString() throws Exception {
+        this.decodeEncodingAndCheck("", UTF8);
+    }
+
+    @Test
+    public void testDecodeEncodingInvalidString() throws UnsupportedEncodingException {
+        this.decodeEncodingAndCheck("\u0fff", UTF8);
+    }
+
+    @Test
+    public void testDecodeEncodingInvalidStringFails() {
+        this.decodeEncodingFails("%", UTF8, IllegalArgumentException.class);
+    }
+
+    @Test
+    public void testDecodeEncodingInvalidStringFails2() {
+        this.decodeEncodingFails("%2", UTF8, IllegalArgumentException.class);
+    }
+
+    @Test
+    public void testDecodeEncodingNullEncodingFails() {
+        this.decodeEncodingFails("ABC", null, NullPointerException.class);
+    }
+
+    @Test
+    public void testDecodeEncodingEmptyEncodingFails() {
+        this.decodeEncodingFails("ABC", "", UnsupportedEncodingException.class);
+    }
+
+    private void decodeEncodingFails(final String s,
+                                     final String encoding,
+                                     final Class<? extends Throwable> thrown) {
+        assertThrows(thrown, () -> java.net.URLDecoder.decode(s, encoding));
+        assertThrows(thrown, () -> URLDecoder.decode(s, encoding));
+    }
 
     @Test
     public void testDecodeEncodingUtf8A() throws UnsupportedEncodingException {
-        this.decodeEncodingAndCheck("A", "UTF-8");
+        this.decodeEncodingAndCheck("A", UTF8);
     }
 
     @Test
     public void testDecodeEncodingUtf8Unprintable() throws UnsupportedEncodingException{
-        this.decodeEncodingAndCheck("\0", "UTF8");
+        this.decodeEncodingAndCheck("\0", UTF8);
     }
 
     @Test
     public void testDecodeEncodingUtf8MixedAscii() throws UnsupportedEncodingException{
-        this.decodeEncodingAndCheck("ABC123", "UTF-8");
+        this.decodeEncodingAndCheck("ABC123", UTF8);
     }
 
     @Test
@@ -92,7 +163,7 @@ public final class URLDecoderTest implements ClassTesting<URLDecoder> {
             b.append((char)i);
             b.append('\n');
         }
-        this.decodeEncodingAndCheck(b.toString(), "UTF-8");
+        this.decodeEncodingAndCheck(b.toString(), UTF8);
     }
 
     @Test
