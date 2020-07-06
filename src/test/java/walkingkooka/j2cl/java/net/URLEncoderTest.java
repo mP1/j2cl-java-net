@@ -17,15 +17,11 @@
 
 package walkingkooka.j2cl.java.net;
 
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
 import org.junit.jupiter.api.Test;
-import walkingkooka.ToStringTesting;
-import walkingkooka.reflect.ClassTesting2;
+import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.CharSequences;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,7 +29,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class URLEncoderTest implements ClassTesting<URLEncoder> {
 
     // encode...........................................................................................................
-    
+
+    @Test
+    public void testEncodeNullFails() {
+        assertThrows(NullPointerException.class, () -> java.net.URLEncoder.encode(null));
+        assertThrows(NullPointerException.class, () -> URLEncoder.encode(null));
+    }
+
     @Test
     public void testEncodeA() {
         this.encodeAndCheck("A");
@@ -64,7 +66,29 @@ public final class URLEncoderTest implements ClassTesting<URLEncoder> {
                 () ->  "encode " + CharSequences.quoteAndEscape(s));
     }
 
-    // encode...........................................................................................................
+    // encodeEncodings..................................................................................................
+
+    @Test
+    public void testEncodeEncodingNullStringFails() {
+        this.encodeEncodingFails(null, "UTF8", NullPointerException.class);
+    }
+
+    @Test
+    public void testEncodeEncodingNullEncodingFails() {
+        this.encodeEncodingFails("%20", null, NullPointerException.class);
+    }
+
+    @Test
+    public void testEncodeEncodingInvalidEncodingFails() {
+        this.encodeEncodingFails("%20", "ABC123", UnsupportedEncodingException.class);
+    }
+
+    private void encodeEncodingFails(final String s,
+                                     final String encoding,
+                                     final Class<? extends Throwable> thrown) {
+        assertThrows(thrown, () -> java.net.URLEncoder.encode(s, encoding));
+        assertThrows(thrown, () -> URLEncoder.encode(s, encoding));
+    }
 
     @Test
     public void testEncodeEncodingUtf8A() throws UnsupportedEncodingException{
