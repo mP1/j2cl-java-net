@@ -39,13 +39,53 @@ public final class URITest implements ClassTesting<URI> {
     }
 
     @Test
+    public void testProtocolWithInvalidCharacter() throws Exception {
+        this.newUriAndCheck("protocol*://example.com/path");
+    }
+
+    @Test
+    public void testProtocolOnly() throws Exception {
+        this.newUriAndCheck("http://");
+    }
+
+    @Test
     public void testEmptyHost() throws Exception {
         this.newUriAndCheck("http:///path");
     }
 
     @Test
+    public void testInvalidHost() throws Exception {
+        this.newUriAndCheck("http://host*");
+    }
+
+    @Test
     public void testEmptyHostPort() throws Exception {
         this.newUriAndCheck("http://:999/path");
+    }
+
+    @Test
+    public void testHost() throws Exception {
+        this.newUriAndCheck("http://host123");
+    }
+
+    @Test
+    public void testHostIp4() throws Exception {
+        this.newUriAndCheck("http://1.2.3.4");
+    }
+
+    @Test
+    public void testHostIp6() throws Exception {
+        this.newUriAndCheck("http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]");
+    }
+
+    @Test
+    public void testHostIp6Invalid() throws Exception {
+        this.newUriAndCheck("http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334");
+    }
+
+    @Test
+    public void testHostIp6Invalid2() throws Exception {
+        this.newUriAndCheck("http://[[2001:0db8:85a3:0000:0000:8a2e:0370:7334");
     }
 
     @Test
@@ -121,6 +161,11 @@ public final class URITest implements ClassTesting<URI> {
     @Test
     public void testProtocolHostPathQueryFragment() throws Exception {
         this.newUriAndCheck("http://example.co/path123m?q1=r2#fragment123");
+    }
+
+    @Test
+    public void testProtocolHostPathQueryFragmentInvalidCharacter() throws Exception {
+        this.newUriAndCheck("http://example.co/path123m?q1=r2#fragment123\u0FFF");
     }
 
     private void newUriAndCheck(final String url) throws Exception {
