@@ -458,16 +458,16 @@ import java.io.IOException;
         return p1 == p2;
     }
 
-    /*
-     * If the URL host is empty while protocol is file, the host is regarded as
-     * localhost.
-     */
-    private static String getHost(URL url) {
-        String host = url.getHost();
-        if ("file".equals(url.getProtocol()) //$NON-NLS-1$
-                && "".equals(host)) { //$NON-NLS-1$
-            host = "localhost"; //$NON-NLS-1$
-        }
-        return host;
-    }
+//    /*
+//     * If the URL host is empty while protocol is file, the host is regarded as
+//     * localhost.
+//     */
+//    private static String getHost(URL url) {
+//        String host = url.getHost();
+//        if ("file".equals(url.getProtocol()) //$NON-NLS-1$
+//                && "".equals(host)) { //$NON-NLS-1$
+//            host = "localhost"; //$NON-NLS-1$
+//        }
+//        return host;
+//    }
 }
