@@ -17,6 +17,8 @@
 
 package walkingkooka.j2cl.java.net;
 
+import javaemul.internal.annotations.GwtIncompatible;
+
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.StringTokenizer;
@@ -26,6 +28,7 @@ import java.util.StringTokenizer;
  */
 public final class URI implements Comparable<URI>, Serializable {
 
+    @GwtIncompatible
     private static final long serialVersionUID = -6052424284110960213l;
 
     static final String unreserved = "_-!.~\'()*"; //$NON-NLS-1$

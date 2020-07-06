@@ -17,12 +17,15 @@
 
 package walkingkooka.j2cl.java.net;
 
+import javaemul.internal.annotations.GwtIncompatible;
+
 /**
  * A {@code URISyntaxException} will be thrown if some information could not be parsed
  * while creating a URI.
  */
 public class URISyntaxException extends Exception {
 
+    @GwtIncompatible
     private static final long serialVersionUID = 2137979680897488891L;
 
     private String input;
