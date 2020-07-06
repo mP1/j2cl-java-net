@@ -18,6 +18,8 @@
 package walkingkooka.j2cl.java.net;
 
 
+import javaemul.internal.annotations.GwtIncompatible;
+
 /**
  * A URL instance specifies the location of a resource on the internet as
  * specified by RFC 1738. Such a resource can be a simple file or a service
@@ -27,6 +29,7 @@ package walkingkooka.j2cl.java.net;
  */
 public final class URL implements java.io.Serializable {
 
+    @GwtIncompatible
     private static final long serialVersionUID = -7627629688361524110L;
 
 //    private static final NetPermission specifyStreamHandlerPermission = new NetPermission(
