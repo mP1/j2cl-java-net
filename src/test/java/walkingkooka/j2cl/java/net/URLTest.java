@@ -18,14 +18,14 @@
 package walkingkooka.j2cl.java.net;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class URLTest implements ClassTesting<URL> {
+public class URLTest implements ClassTesting<URL>, HashCodeEqualsDefinedTesting2<URL> {
 
     // new URL(String)..................................................................................................
 
@@ -369,6 +369,37 @@ public class URLTest implements ClassTesting<URL> {
         assertEquals(jre.toURI().toString(), emul.toURI().toString(), () -> "toURI " + jre);
     }
 
+    // equals...........................................................................................................
+
+    @Test
+    public void testSameHostDifferentCase() throws Exception {
+        this.checkEquals(new URL("http://HOST123/path45/path67"));
+    }
+
+    @Test
+    public void testDifferentHost() throws Exception {
+        this.checkNotEquals(new URL("http://DIFFERENTHOST/path45/path67"));
+    }
+
+    // sameFile...........................................................................................................
+
+    @Test
+    public void testSameFileSameUrl() throws Exception {
+        final String url = "http://HOST123/path45/path67";
+        this.checkEquals(url, url);
+    }
+
+    @Test
+    public void testSameFileDifferentHost() throws Exception {
+        this.checkNotEquals("http://HOST123/path45/path67", "http://DIFFERENTHOST/path45/path67");
+    }
+
+    private void sameFileAndCheck(final String url,
+                                  final String other) throws Exception {
+        assertEquals(new java.net.URL(url).sameFile(new java.net.URL(other)),
+                new URL(url).sameFile(new URL(other)));
+    }
+
     // ClassTesting.....................................................................................................
 
     @Override
@@ -379,5 +410,16 @@ public class URLTest implements ClassTesting<URL> {
     @Override
     public JavaVisibility typeVisibility() {
         return JavaVisibility.PUBLIC;
+    }
+
+    // HashCodeEqualityTesting..........................................................................................
+
+    @Override
+    public URL createObject() {
+        try {
+            return new URL("http://host123/path45/path67");
+        } catch (final MalformedURLException cause) {
+            throw new Error(cause.getMessage());
+        }
     }
 }
