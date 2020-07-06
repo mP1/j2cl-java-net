@@ -18,15 +18,22 @@
 package walkingkooka.j2cl.java.net;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.compare.ComparableTesting2;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public final class URITest implements ClassTesting<URI> {
+public final class URITest implements ClassTesting<URI>, ComparableTesting2<URI> {
 
-    // URI(String str)..................................................................................................
+    @Test
+    public void testCreate() throws Exception {
+        final String uri = "http://host123:456/path789";
+        this.check(java.net.URI.create(uri), URI.create(uri));
+    }
+
+// URI(String str)..................................................................................................
 
     @Test
     public void testMissingProtocol() throws Exception {
@@ -836,6 +843,25 @@ public final class URITest implements ClassTesting<URI> {
         assertEquals(jre.toExternalForm(), emul.toExternalForm(), () -> "toExternalForm " + jre);
     }
 
+    // equals...........................................................................................................
+
+    @Test
+    public void testHostDifferentCase() {
+        this.checkEquals(URI.create("http://HOST123:456/path789"));
+    }
+
+    @Test
+    public void testDifferentUri() {
+        this.checkNotEquals(URI.create("http://different"));
+    }
+
+    // Comparable...........................................................................................................
+
+    @Test
+    public void testCompare() {
+        this.compareToAndCheckLess(URI.create("http://ZZZ:456/path789"));
+    }
+
     // ClassTesting.....................................................................................................
 
     @Override
@@ -846,5 +872,12 @@ public final class URITest implements ClassTesting<URI> {
     @Override
     public JavaVisibility typeVisibility() {
         return JavaVisibility.PUBLIC;
+    }
+
+    // ComparableTesting2................................................................................................
+
+    @Override
+    public URI createComparable() {
+        return URI.create("http://host123:456/path789");
     }
 }
