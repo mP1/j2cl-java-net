@@ -26,6 +26,16 @@
 
     <repositories>
         <repository>
+            <id>local.repo</id>
+            <url>@localRepositoryUrl@</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
             <id>github-mp1-appengine-repo</id>
             <url>https://maven-repo-254709.appspot.com</url>
         </repository>
@@ -200,8 +210,7 @@
                             </formatting>
                             <java-compiler-arguments/>
                             <language-out>ECMASCRIPT_2016</language-out>
-                            <!-- dont want to parallelize -->
-                            <thread-pool-size>1</thread-pool-size>
+                            <thread-pool-size>0</thread-pool-size>
 
                             <classpath-required/>
                             <ignored-dependencies>
