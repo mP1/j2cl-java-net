@@ -19,13 +19,15 @@ package walkingkooka.j2cl.java.net;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.predicate.Predicates;
+
+import java.lang.reflect.Method;
+import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class URLTest implements ClassTesting<URL>, HashCodeEqualsDefinedTesting2<URL> {
+public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefinedTesting2<URL> {
 
     // new URL(String)..................................................................................................
 
@@ -408,8 +410,8 @@ public class URLTest implements ClassTesting<URL>, HashCodeEqualsDefinedTesting2
     }
 
     @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
+    public Predicate<Method> requiredMethods() {
+        return (m) -> false == m.getName().equals("set");
     }
 
     // HashCodeEqualityTesting..........................................................................................

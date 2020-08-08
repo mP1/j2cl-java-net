@@ -28,9 +28,6 @@ import java.util.StringTokenizer;
  */
 public final class URI implements Comparable<URI>, Serializable {
 
-    @GwtIncompatible
-    private static final long serialVersionUID = -6052424284110960213l;
-
     static final String unreserved = "_-!.~\'()*"; //$NON-NLS-1$
 
     static final String punct = ",;:$&+="; //$NON-NLS-1$

@@ -17,12 +17,12 @@
 
 package walkingkooka.j2cl.java.net;
 
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.predicate.Predicates;
 
-import java.io.EOFException;
+import java.lang.reflect.Method;
+import java.util.function.Predicate;
 
-public final class URISyntaxExceptionTest implements ClassTesting<URISyntaxException> {
+public final class URISyntaxExceptionTest extends JavaNetTestCase<URISyntaxException> {
 
     @Override
     public Class<URISyntaxException> type() {
@@ -30,7 +30,7 @@ public final class URISyntaxExceptionTest implements ClassTesting<URISyntaxExcep
     }
 
     @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
+    public Predicate<Method> requiredMethods() {
+        return Predicates.always();
     }
 }

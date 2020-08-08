@@ -19,13 +19,14 @@ package walkingkooka.j2cl.java.net;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.compare.ComparableTesting2;
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+
+import java.lang.reflect.Method;
+import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public final class URITest implements ClassTesting<URI>, ComparableTesting2<URI> {
+public final class URITest extends JavaNetTestCase<URI> implements ComparableTesting2<URI> {
 
     @Test
     public void testCreate() throws Exception {
@@ -869,15 +870,17 @@ public final class URITest implements ClassTesting<URI>, ComparableTesting2<URI>
         return URI.class;
     }
 
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
-    }
-
     // ComparableTesting2................................................................................................
 
     @Override
     public URI createComparable() {
         return URI.create("http://host123:456/path789");
+    }
+
+    // ShadedClassTesting...............................................................................................
+
+    @Override
+    public Predicate<Method> requiredMethods() {
+        return m -> false == m.getName().equals("decode") && false == m.getName().equals("normalize");
     }
 }
