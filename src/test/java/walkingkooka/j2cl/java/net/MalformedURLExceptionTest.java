@@ -17,10 +17,12 @@
 
 package walkingkooka.j2cl.java.net;
 
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.predicate.Predicates;
 
-public final class MalformedURLExceptionTest implements ClassTesting<MalformedURLException> {
+import java.lang.reflect.Method;
+import java.util.function.Predicate;
+
+public final class MalformedURLExceptionTest extends JavaNetTestCase<MalformedURLException> {
 
     @Override
     public Class<MalformedURLException> type() {
@@ -28,7 +30,7 @@ public final class MalformedURLExceptionTest implements ClassTesting<MalformedUR
     }
 
     @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
+    public Predicate<Method> requiredMethods() {
+        return Predicates.always();
     }
 }

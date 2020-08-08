@@ -18,15 +18,16 @@
 package walkingkooka.j2cl.java.net;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.predicate.Predicates;
 import walkingkooka.text.CharSequences;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
+import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-public final class URLEncoderTest implements ClassTesting<URLEncoder> {
+public final class URLEncoderTest extends JavaNetTestCase<URLEncoder> {
 
     // encode...........................................................................................................
 
@@ -145,7 +146,7 @@ public final class URLEncoderTest implements ClassTesting<URLEncoder> {
                 () ->  "encode " + CharSequences.quoteAndEscape(s) + " encoding: " + encoding + " encoding: " + encoding);
     }
     
-    // ClassTesting.....................................................................................................
+    // ShadedClassTesting...............................................................................................
 
     @Override
     public Class<URLEncoder> type() {
@@ -153,7 +154,7 @@ public final class URLEncoderTest implements ClassTesting<URLEncoder> {
     }
 
     @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
+    public Predicate<Method> requiredMethods() {
+        return Predicates.always();
     }
 }

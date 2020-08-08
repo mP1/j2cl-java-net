@@ -1,0 +1,6 @@
+#
+# required to stop unpacking of tests by src/it/junit-test/pom.xml
+#
+
+*
+
