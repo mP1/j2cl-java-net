@@ -19,6 +19,7 @@ import com.google.j2cl.junit.apt.J2clTestInput;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.URL;
 
@@ -51,5 +52,10 @@ public class JunitTest {
         final URL url = new URL("http://host123:456/path789");
 
         Assert.assertEquals(url, url.toURI().toURL());
+    }
+
+    @Test
+    public void testConnectException() {
+        new ConnectException("ignored message");
     }
 }
