@@ -12,7 +12,7 @@
 An emulation of some of the classes in the java.net package. More may be added in the future, while many such as `java.net.SocketServer`
 will never make any sense within a browser.
 
-Source code were copied from the [Apache Harmony)(https://github.com/apache/harmony) project with numerous patches made
+Source code were copied from the [Apache Harmony](https://github.com/apache/harmony) project with numerous patches made
 to ensure the behaviour of both the JRE and the emulated class are identical. The `java.net.URL` required some [patches](https://github.com/mP1/j2cl-java-net/blob/master/src/main/java/walkingkooka/j2cl/java/net/URL.java)
 to handle several edge cases, such as handling of missing components, such as an empty host. [Tests](https://github.com/mP1/j2cl-java-net/blob/master/src/test/java/walkingkooka/j2cl/java/net/URLTest.java)
 are provided to verify both do the same thing with the same parameters.
