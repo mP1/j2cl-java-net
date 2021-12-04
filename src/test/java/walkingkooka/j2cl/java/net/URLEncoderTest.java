@@ -25,7 +25,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class URLEncoderTest extends JavaNetTestCase<URLEncoder> {
 
@@ -62,9 +61,9 @@ public final class URLEncoderTest extends JavaNetTestCase<URLEncoder> {
     }
 
     private void encodeAndCheck(final String s) {
-        assertEquals(java.net.URLEncoder.encode(s),
+        this.checkEquals(java.net.URLEncoder.encode(s),
                 URLEncoder.encode(s),
-                () ->  "encode " + CharSequences.quoteAndEscape(s));
+                () -> "encode " + CharSequences.quoteAndEscape(s));
     }
 
     // encodeEncodings..................................................................................................
@@ -141,9 +140,9 @@ public final class URLEncoderTest extends JavaNetTestCase<URLEncoder> {
 
     private void encodeEncodingAndCheck(final String s,
                                         final String encoding) throws UnsupportedEncodingException {
-        assertEquals(java.net.URLEncoder.encode(s, encoding),
+        this.checkEquals(java.net.URLEncoder.encode(s, encoding),
                 URLEncoder.encode(s, encoding),
-                () ->  "encode " + CharSequences.quoteAndEscape(s) + " encoding: " + encoding + " encoding: " + encoding);
+                () -> "encode " + CharSequences.quoteAndEscape(s) + " encoding: " + encoding + " encoding: " + encoding);
     }
     
     // ShadedClassTesting...............................................................................................

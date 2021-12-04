@@ -19,12 +19,10 @@ package walkingkooka.j2cl.java.net;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
-import walkingkooka.predicate.Predicates;
 
 import java.lang.reflect.Method;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefinedTesting2<URL> {
@@ -139,7 +137,7 @@ public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefin
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
                 expected.printStackTrace();
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -214,7 +212,7 @@ public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefin
                 new URL(protocol, host, file);
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -299,7 +297,7 @@ public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefin
                 new URL(protocol, host, port, file);
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -338,7 +336,7 @@ public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefin
                 new URL(new URL(context), url);
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -353,22 +351,22 @@ public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefin
                        final URL emul) throws Exception {
         //assertEquals(jre.getDefaultPort(), emul.getDefaultPort(), () -> "default port " + jre);
 
-        assertEquals(jre.getProtocol(), emul.getProtocol(), () -> "protocol " + jre);
+        this.checkEquals(jre.getProtocol(), emul.getProtocol(), () -> "protocol " + jre);
 
-        assertEquals(jre.getUserInfo(), emul.getUserInfo(), () -> "userInfo " + jre);
-        assertEquals(jre.getHost(), emul.getHost(), () -> "host " + jre);
-        assertEquals(jre.getPort(), emul.getPort(), () -> "port " + jre);
+        this.checkEquals(jre.getUserInfo(), emul.getUserInfo(), () -> "userInfo " + jre);
+        this.checkEquals(jre.getHost(), emul.getHost(), () -> "host " + jre);
+        this.checkEquals(jre.getPort(), emul.getPort(), () -> "port " + jre);
 
-        assertEquals(jre.getPath(), emul.getPath(), () -> "path " + jre);
-        assertEquals(jre.getFile(), emul.getFile(), () -> "file " + jre);
-        assertEquals(jre.getQuery(), emul.getQuery(), () -> "query " + jre);
-        assertEquals(jre.getRef(), emul.getRef(), () -> "ref " + jre);
+        this.checkEquals(jre.getPath(), emul.getPath(), () -> "path " + jre);
+        this.checkEquals(jre.getFile(), emul.getFile(), () -> "file " + jre);
+        this.checkEquals(jre.getQuery(), emul.getQuery(), () -> "query " + jre);
+        this.checkEquals(jre.getRef(), emul.getRef(), () -> "ref " + jre);
 
-        assertEquals(jre.getAuthority(), emul.getAuthority(), () -> "authority " + jre);
+        this.checkEquals(jre.getAuthority(), emul.getAuthority(), () -> "authority " + jre);
 
-        assertEquals(jre.toExternalForm(), emul.toExternalForm(), () -> "toExternalForm " + jre);
+        this.checkEquals(jre.toExternalForm(), emul.toExternalForm(), () -> "toExternalForm " + jre);
 
-        assertEquals(jre.toURI().toString(), emul.toURI().toString(), () -> "toURI " + jre);
+        this.checkEquals(jre.toURI().toString(), emul.toURI().toString(), () -> "toURI " + jre);
     }
 
     // equals...........................................................................................................
@@ -398,7 +396,7 @@ public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefin
 
     private void sameFileAndCheck(final String url,
                                   final String other) throws Exception {
-        assertEquals(new java.net.URL(url).sameFile(new java.net.URL(other)),
+        this.checkEquals(new java.net.URL(url).sameFile(new java.net.URL(other)),
                 new URL(url).sameFile(new URL(other)));
     }
 
