@@ -24,7 +24,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class URLDecoderTest extends JavaNetTestCase<URLDecoder> {
@@ -90,9 +89,9 @@ public final class URLDecoderTest extends JavaNetTestCase<URLDecoder> {
     private void decodeAndCheck(final String s) {
         final String encoded = URLEncoder.encode(s);
 
-        assertEquals(java.net.URLDecoder.decode(java.net.URLEncoder.encode(s)),
+        this.checkEquals(java.net.URLDecoder.decode(java.net.URLEncoder.encode(s)),
                 URLDecoder.decode(encoded),
-                () ->  "decode " + CharSequences.quoteAndEscape(encoded) + " originally " + CharSequences.quoteAndEscape(s));
+                () -> "decode " + CharSequences.quoteAndEscape(encoded) + " originally " + CharSequences.quoteAndEscape(s));
     }
 
     // encoding...........................................................................................................
@@ -195,9 +194,9 @@ public final class URLDecoderTest extends JavaNetTestCase<URLDecoder> {
                                         final String encoding) throws UnsupportedEncodingException {
         final String encoded = URLEncoder.encode(s, encoding);
 
-        assertEquals(java.net.URLDecoder.decode(java.net.URLEncoder.encode(s, encoding), encoding),
+        this.checkEquals(java.net.URLDecoder.decode(java.net.URLEncoder.encode(s, encoding), encoding),
                 URLDecoder.decode(encoded, encoding),
-                () ->  "decode " + CharSequences.quoteAndEscape(encoded) + " encoding: " + encoding + " originally " + CharSequences.quoteAndEscape(s));
+                () -> "decode " + CharSequences.quoteAndEscape(encoded) + " encoding: " + encoding + " originally " + CharSequences.quoteAndEscape(s));
     }
 
     @Override

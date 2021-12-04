@@ -23,7 +23,6 @@ import walkingkooka.compare.ComparableTesting2;
 import java.lang.reflect.Method;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public final class URITest extends JavaNetTestCase<URI> implements ComparableTesting2<URI> {
@@ -189,7 +188,7 @@ public final class URITest extends JavaNetTestCase<URI> implements ComparableTes
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
                 expected.printStackTrace();
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -270,7 +269,7 @@ public final class URITest extends JavaNetTestCase<URI> implements ComparableTes
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
                 expected.printStackTrace();
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -362,7 +361,7 @@ public final class URITest extends JavaNetTestCase<URI> implements ComparableTes
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
                 expected.printStackTrace();
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -500,7 +499,7 @@ public final class URITest extends JavaNetTestCase<URI> implements ComparableTes
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
                 expected.printStackTrace();
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -660,7 +659,7 @@ public final class URITest extends JavaNetTestCase<URI> implements ComparableTes
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
                 expected.printStackTrace();
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -775,33 +774,33 @@ public final class URITest extends JavaNetTestCase<URI> implements ComparableTes
 
     private void check(final java.net.URI jre,
                        final URI emul) throws Exception {
-        assertEquals(jre.getScheme(), emul.getScheme(), () -> "scheme " + jre);
+        this.checkEquals(jre.getScheme(), emul.getScheme(), () -> "scheme " + jre);
 
-        assertEquals(jre.getUserInfo(), emul.getUserInfo(), () -> "userInfo " + jre);
-        assertEquals(jre.getRawUserInfo(), emul.getRawUserInfo(), () -> "userInfo " + jre);
+        this.checkEquals(jre.getUserInfo(), emul.getUserInfo(), () -> "userInfo " + jre);
+        this.checkEquals(jre.getRawUserInfo(), emul.getRawUserInfo(), () -> "userInfo " + jre);
 
-        assertEquals(jre.getHost(), emul.getHost(), () -> "host " + jre);
-        assertEquals(jre.getPort(), emul.getPort(), () -> "port " + jre);
+        this.checkEquals(jre.getHost(), emul.getHost(), () -> "host " + jre);
+        this.checkEquals(jre.getPort(), emul.getPort(), () -> "port " + jre);
 
-        assertEquals(jre.getPath(), emul.getPath(), () -> "path " + jre);
+        this.checkEquals(jre.getPath(), emul.getPath(), () -> "path " + jre);
 
-        assertEquals(jre.getQuery(), emul.getQuery(), () -> "query " + jre);
-        assertEquals(jre.getRawQuery(), emul.getRawQuery(), () -> "raw query " + jre);
+        this.checkEquals(jre.getQuery(), emul.getQuery(), () -> "query " + jre);
+        this.checkEquals(jre.getRawQuery(), emul.getRawQuery(), () -> "raw query " + jre);
 
-        assertEquals(jre.getFragment(), emul.getFragment(), () -> "fragment " + jre);
-        assertEquals(jre.getRawFragment(), emul.getRawFragment(), () -> "raw fragment " + jre);
+        this.checkEquals(jre.getFragment(), emul.getFragment(), () -> "fragment " + jre);
+        this.checkEquals(jre.getRawFragment(), emul.getRawFragment(), () -> "raw fragment " + jre);
 
-        assertEquals(jre.getAuthority(), emul.getAuthority(), () -> "authority " + jre);
-        assertEquals(jre.getRawAuthority(), emul.getRawAuthority(), () -> "raw authority " + jre);
+        this.checkEquals(jre.getAuthority(), emul.getAuthority(), () -> "authority " + jre);
+        this.checkEquals(jre.getRawAuthority(), emul.getRawAuthority(), () -> "raw authority " + jre);
 
-        assertEquals(jre.getSchemeSpecificPart(), emul.getSchemeSpecificPart(), () -> "getSchemeSpecificPart " + jre);
-        assertEquals(jre.getRawSchemeSpecificPart(), emul.getRawSchemeSpecificPart(), () -> "getRawSchemeSpecificPart " + jre);
+        this.checkEquals(jre.getSchemeSpecificPart(), emul.getSchemeSpecificPart(), () -> "getSchemeSpecificPart " + jre);
+        this.checkEquals(jre.getRawSchemeSpecificPart(), emul.getRawSchemeSpecificPart(), () -> "getRawSchemeSpecificPart " + jre);
 
-        assertEquals(jre.isAbsolute(), emul.isAbsolute(), () -> "isAbsolute " + jre);
-        assertEquals(jre.isOpaque(), emul.isOpaque(), () -> "isOpaque " + jre);
+        this.checkEquals(jre.isAbsolute(), emul.isAbsolute(), () -> "isAbsolute " + jre);
+        this.checkEquals(jre.isOpaque(), emul.isOpaque(), () -> "isOpaque " + jre);
 
-        assertEquals(jre.toString(), emul.toString(), () -> "toString " + jre);
-        assertEquals(jre.toASCIIString(), emul.toASCIIString(), () -> "toASCIIString " + jre);
+        this.checkEquals(jre.toString(), emul.toString(), () -> "toString " + jre);
+        this.checkEquals(jre.toASCIIString(), emul.toASCIIString(), () -> "toASCIIString " + jre);
 
         java.net.URL jreUrl;
         try {
@@ -815,7 +814,7 @@ public final class URITest extends JavaNetTestCase<URI> implements ComparableTes
                 fail("Expected " + thrown.getClass().getSimpleName());
             } catch (final Exception expected) {
                 expected.printStackTrace();
-                assertEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
+                this.checkEquals(thrown.getClass().getSimpleName(), expected.getClass().getSimpleName());
             }
         }
 
@@ -828,20 +827,20 @@ public final class URITest extends JavaNetTestCase<URI> implements ComparableTes
                           final URL emul) {
         //assertEquals(jre.getDefaultPort(), emul.getDefaultPort(), () -> "default port " + jre);
 
-        assertEquals(jre.getProtocol(), emul.getProtocol(), () -> "protocol " + jre);
+        this.checkEquals(jre.getProtocol(), emul.getProtocol(), () -> "protocol " + jre);
 
-        assertEquals(jre.getUserInfo(), emul.getUserInfo(), () -> "userInfo " + jre);
-        assertEquals(jre.getHost(), emul.getHost(), () -> "host " + jre);
-        assertEquals(jre.getPort(), emul.getPort(), () -> "port " + jre);
+        this.checkEquals(jre.getUserInfo(), emul.getUserInfo(), () -> "userInfo " + jre);
+        this.checkEquals(jre.getHost(), emul.getHost(), () -> "host " + jre);
+        this.checkEquals(jre.getPort(), emul.getPort(), () -> "port " + jre);
 
-        assertEquals(jre.getPath(), emul.getPath(), () -> "path " + jre);
-        assertEquals(jre.getFile(), emul.getFile(), () -> "file " + jre);
-        assertEquals(jre.getQuery(), emul.getQuery(), () -> "query " + jre);
-        assertEquals(jre.getRef(), emul.getRef(), () -> "ref " + jre);
+        this.checkEquals(jre.getPath(), emul.getPath(), () -> "path " + jre);
+        this.checkEquals(jre.getFile(), emul.getFile(), () -> "file " + jre);
+        this.checkEquals(jre.getQuery(), emul.getQuery(), () -> "query " + jre);
+        this.checkEquals(jre.getRef(), emul.getRef(), () -> "ref " + jre);
 
-        assertEquals(jre.getAuthority(), emul.getAuthority(), () -> "authority " + jre);
+        this.checkEquals(jre.getAuthority(), emul.getAuthority(), () -> "authority " + jre);
 
-        assertEquals(jre.toExternalForm(), emul.toExternalForm(), () -> "toExternalForm " + jre);
+        this.checkEquals(jre.toExternalForm(), emul.toExternalForm(), () -> "toExternalForm " + jre);
     }
 
     // equals...........................................................................................................
