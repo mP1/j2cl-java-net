@@ -17,8 +17,6 @@
 
 package walkingkooka.j2cl.java.net;
 
-import javaemul.internal.annotations.GwtIncompatible;
-
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.StringTokenizer;
