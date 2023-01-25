@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <inherits name="walkingkooka.Walkingkooka"/>
+  <inherits name="java.util.StringTokenizer"/>
+
+  <source path=""/>
+  <super-source path="super"/>
+</module>
