@@ -3,6 +3,5 @@
   <inherits name="walkingkooka.Walkingkooka"/>
   <inherits name="java.util.StringTokenizer"/>
 
-  <source path=""/>
   <super-source path="super"/>
 </module>
