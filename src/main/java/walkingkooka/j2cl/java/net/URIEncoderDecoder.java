@@ -30,7 +30,9 @@ class URIEncoderDecoder {
 
     static final String digits = "0123456789ABCDEF"; //$NON-NLS-1$
 
-    static final String encoding = "UTF8"; //$NON-NLS-1$
+    // when UTF8
+    // GWT throws java.io.UnsupportedEncodingException: UTF8
+    static final String encoding = "UTF-8"; //$NON-NLS-1$
 
     /**
      * Validate a string by checking if it contains any characters other than:
