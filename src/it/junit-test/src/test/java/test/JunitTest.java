@@ -22,6 +22,7 @@ import org.junit.Test;
 import java.net.ConnectException;
 import java.net.URI;
 import java.net.URL;
+import java.net.URLDecoder;
 
 @J2clTestInput(JunitTest.class)
 public class JunitTest {
@@ -48,10 +49,45 @@ public class JunitTest {
     }
 
     @Test
+    public void testNewUrlStringWithFragment() throws Exception {
+        final URL url = new URL("http://host123:456/path789#%20Hello");
+
+        Assert.assertEquals("protocol", "http", url.getProtocol());
+        Assert.assertEquals("host", "host123", url.getHost());
+        Assert.assertEquals("port", 456, url.getPort());
+        Assert.assertEquals("path", "/path789", url.getPath());
+        Assert.assertEquals("ref", "%20Hello", url.getRef());
+    }
+
+    @Test
     public void testUrlUriRoundtrip() throws Exception {
         final URL url = new URL("http://host123:456/path789");
 
         Assert.assertEquals(url, url.toURI().toURL());
+    }
+
+    @Test
+    public void testUrlDecodeString() throws Exception {
+        Assert.assertEquals(
+                " Hello",
+                URLDecoder.decode("+Hello")
+        );
+    }
+
+    @Test
+    public void testUrlDecodeStringEncodingUTF8() throws Exception {
+        Assert.assertEquals(
+                " Hello",
+                URLDecoder.decode("+Hello", "UTF8")
+        );
+    }
+
+    @Test
+    public void testUrlDecodeStringEncodingUTFDash8() throws Exception {
+        Assert.assertEquals(
+                " Hello",
+                URLDecoder.decode("+Hello", "UTF-8")
+        );
     }
 
     @Test

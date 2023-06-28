@@ -124,6 +124,16 @@ public class URLTest extends JavaNetTestCase<URL> implements HashCodeEqualsDefin
         this.newUrlAndCheck("http://example.co/path123m?q1=r2#fragment123");
     }
 
+    @Test
+    public void testProtocolHostPathQueryFragmentSpacePlusSign() throws Exception{
+        this.newUrlAndCheck("http://example.co/path123m?q1=r2#fragment123+");
+    }
+
+    @Test
+    public void testProtocolHostPathQueryFragmentSpacePercent20() throws Exception{
+        this.newUrlAndCheck("http://example.co/path123m?q1=r2#fragment123%20");
+    }
+
     private void newUrlAndCheck(final String url) throws Exception {
         java.net.URL jre;
         try {

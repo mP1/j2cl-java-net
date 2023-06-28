@@ -146,6 +146,16 @@ public final class URLDecoderTest extends JavaNetTestCase<URLDecoder> {
     }
 
     @Test
+    public void testDecodeEncodingUtf8SpacePlusSign() throws UnsupportedEncodingException {
+        this.decodeEncodingAndCheck("+", UTF8);
+    }
+
+    @Test
+    public void testDecodeEncodingUtf8SpacePercent20() throws UnsupportedEncodingException {
+        this.decodeEncodingAndCheck("%20", UTF8);
+    }
+
+    @Test
     public void testDecodeEncodingUtf8Unprintable() throws UnsupportedEncodingException{
         this.decodeEncodingAndCheck("\0", UTF8);
     }
