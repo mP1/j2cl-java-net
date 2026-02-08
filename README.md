@@ -6,8 +6,6 @@
 ![](https://tokei.rs/b1/github/mP1/j2cl-java-net)
 [![J2CL compatible](https://img.shields.io/badge/J2CL-compatible-brightgreen.svg)](https://github.com/mP1/j2cl-central)
 
-
-
 # java.net for j2cl
 
 An emulation of some of the classes in the java.net package. More may be added in the future, while many such as `java.net.SocketServer`
@@ -27,21 +25,15 @@ are provided to verify both do the same thing with the same parameters.
 The `java.net.URLStreamHandler` is absent as one of its primary functionalities is to handle connectivity to a resource
 on a network. 
 
-
-
 ## walkingkooka.j2cl.java.net
 
 - The package `walkingkooka.j2cl.java.net` is shaded to `java.net`.
-
-
 
 ### URL
 
 URL should only be used to parse `java.lang.String`. All network connectivity and interaction methods have been removed.
 Customization depending on the protocol portion of a URL via a  `java.net.URLStreamHandler` is not possible and all methods
 with it have been removed.
-
-
 
 #### Methods
 
@@ -50,6 +42,3 @@ with it have been removed.
 - `openConnection` absent.
 - `openStream` absent.
 - `setURLStreamHandlerFactory` absent.
-
-
-
